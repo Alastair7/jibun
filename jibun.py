@@ -15,14 +15,15 @@ month_file = Path.joinpath(journey_path, str(date.today().year), month_name + ".
 menu_options = """
           1 - Add my daily log
           2 - Set my energy limit
-          3 - Exit
+          3 - Edit log line
+          4 - Exit
           """
 
 
 energy_limit = ""
 adventurer_input = ""
 
-while adventurer_input != "-1" and adventurer_input != "3":
+while adventurer_input != "-1" and adventurer_input != "4":
     print("Hey Adventurer! What would you like to do?")
     print(menu_options)
     adventurer_input = input("I want to: ")
@@ -33,3 +34,6 @@ while adventurer_input != "-1" and adventurer_input != "3":
             journal_helper.add_daily_log(month_file, calories, protein, energy_limit)
         case "2":
             energy_limit = journal_helper.set_adventurer_limits()
+        case "3":
+            target_log = input("Which log would you like to alter? (yyyy-MM-dd): ")
+            journal_helper.edit_log(month_file, target_log, energy_limit)
