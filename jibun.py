@@ -3,6 +3,8 @@ from datetime import date
 import calendar
 import journal_helper
 
+journal_helper.init_journey()
+
 current_month = date.today().month
 month_name = calendar.month_name[current_month]
 
@@ -16,7 +18,6 @@ menu_options = """
           3 - Exit
           """
 
-journal_helper.init_journey()
 
 energy_limit = ""
 adventurer_input = ""

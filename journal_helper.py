@@ -15,8 +15,8 @@ def init_journey():
 
         current_month = date.today().month
         month_name = calendar.month_name[current_month]
-        month_file = Path.joinpath(year_path, month_name)
-        Path.touch(month_file + ".txt", parents=True, exist_ok=True)
+        month_file = Path.joinpath(year_path, month_name + ".txt")
+        Path.touch(month_file, exist_ok=True)
 
 def set_adventurer_limits():
     kcal = input('Kcal Limit: ')
@@ -32,7 +32,7 @@ def add_daily_log(month_file, kcalories, protein, energy_limit):
     log_data = ",".join([kcalories, protein])
     cur_date = date.today().isoformat()
 
-    base_log = cur_date + " " + energy_limit + " " + log_data
+    base_log = cur_date + " " + energy_limit + " " + log_data + "\n"
 
     with open(month_file) as file:
         file_lines = file.readlines()
@@ -42,11 +42,8 @@ def add_daily_log(month_file, kcalories, protein, energy_limit):
             line_index = file_lines.index(line)
             file_lines[line_index] = base_log
             break
-        else:
-            file_lines.append(base_log + "\n")
-            break
     else:
-        file_lines.append(base_log + "\n")
+        file_lines.append(base_log)
 
     with open(month_file, "w+") as f:
         f.writelines(file_lines)
